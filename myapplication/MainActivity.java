@@ -30,9 +30,11 @@ private TextView value;
 private final char ADDITION='+';
     private final char MINUS='-';
     private final char DIVISION='/';
+    private  char Sign=' ';
     private final char MULTIPLY='*';
     private Double val1=Double.NaN;
     private Double val2=Double.NaN;
+    private Double val3=Double.NaN;
     private char ACTION;
     private final char EQU=0;
     private Button Clear;
@@ -171,10 +173,10 @@ value.setText(null);
             @Override
             public void onClick(View v) {
                 compute();
-                ACTION=EQU;
-                Result.setText(Result.getText().toString()+ String.valueOf(val2) + '=' + String.valueOf(val1) );
-                value.setText(null);
 
+                     ACTION = EQU;
+                     value.setText(String.valueOf(val3) + String.valueOf(Sign) + String.valueOf(val2) + '=');
+                     Result.setText(String.valueOf(val1));
 
             }
         });
@@ -225,20 +227,29 @@ else{
         if(!Double.isNaN(val1)){
             val2=Double.parseDouble(value.getText().toString());
             switch (ACTION){
+
                 case ADDITION:
+                    val3=val1;
                     val1=val1+val2;
+                    Sign='+';
                     break;
 
                 case MINUS:
+                    val3=val1;
                     val1=val1-val2;
+                    Sign='-';
                     break;
 
                 case MULTIPLY:
+                    val3=val1;
+                    Sign='x';
                     val1=val1*val2;
                     break;
 
                 case DIVISION:
+                    val3=val1;
                     val1=val1/val2;
+                    Sign='/';
                     break;
 
                 case EQU:
